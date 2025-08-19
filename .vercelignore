@@ -1,9 +1,8 @@
-.env
-.vercel
 node_modules
 .cache
 .vscode
-build
-dist
-.DS_Store
+.vercel
 *.log
+.DS_Store
+*.tar.gz
+*.zip
