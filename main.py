@@ -11,11 +11,10 @@ from langchain_core.prompts import PromptTemplate
 #from video_generator import generate_ultimate_video
 
 load_dotenv()
-GROQ_API_KEY = "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"
 
 # ---------- Configuration LLM ----------
 llm = ChatGroq(
-    groq_api_key=GROQ_API_KEY,
+    groq_api_key=os.getenv("GROQ_API_KEY"),
     model_name="llama-3.3-70b-versatile"
 )
 
