@@ -130,6 +130,7 @@ function Quiz({ questions = [], onFinish, onClose }) {
 
 
 export default function TrainingPlanFull() {
+
   const [plan, setPlan] = useState(null);
   const [loadingPlan, setLoadingPlan] = useState(false);
   const [loadingFull, setLoadingFull] = useState(false);
@@ -160,7 +161,7 @@ export default function TrainingPlanFull() {
     setLoadingPlan(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:8000/api/generate-plan", {
+      const res = await fetch("https://eduflex-backend-sqid.onrender.com/api/generate-plan", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
@@ -180,7 +181,7 @@ export default function TrainingPlanFull() {
   const fetchChapterOnDemand = async (chapter) => {
     setSelectedChapter({ title: chapter.title, loading: true, html: "" });
     try {
-      const res = await fetch("http://localhost:8000/api/generate-lessons", {
+      const res = await fetch("https://eduflex-backend-sqid.onrender.com/api/generate-lessons", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -203,7 +204,7 @@ export default function TrainingPlanFull() {
     setQuizQuestions(null);
     setQuizForChapterTitle(null);
     try {
-      const res = await fetch("http://localhost:8000/api/generate-quiz", {
+      const res = await fetch("https://eduflex-backend-sqid.onrender.com/api/generate-quiz", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chapter_title: chapterTitle, chapter_summary: chapterSummary }),
@@ -219,28 +220,7 @@ export default function TrainingPlanFull() {
     }
   };
 
-  const handleGenerateVideo = async () => {
-    setLoading(true);
-    try {
-      const response = await fetch("http://localhost:8000/generate_video", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chapter_title: selectedChapter.title,
-          chapter_text: selectedChapter.html,
-          quiz_list: quizQuestions 
-        })
-      });
 
-      if (!response.ok) throw new Error("Erreur lors de la génération de la vidéo");
-
-      const data = await response.json();
-      setVideoUrl(data.video_path); // URL renvoyée par le backend
-    } catch (error) {
-      console.error("Erreur génération vidéo:", error);
-    }
-    setLoading(false);
-  };
 
   //const exportChapterPDF = (chapterHtml, filename = "chapter.pdf") => {
   //  const el = document.createElement("div");
