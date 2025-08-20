@@ -21,11 +21,13 @@ llm = ChatGroq(
 # ---------- FastAPI ----------
 app = FastAPI(title="EduFlex API")
 
+origins = ["https://eduflexx.vercel.app/",]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://gilchristttt.github.io/Eduflex/"],  
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],  
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
