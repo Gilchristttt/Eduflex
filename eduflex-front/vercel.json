@@ -3,6 +3,7 @@
   "builds": [
     { "src": "package.json", "use": "@vercel/static-build" }
   ],
+  "framework": "create-react-app",
   "rewrites": [
     { "source": "/(.*)", "destination": "/" }
   ]
