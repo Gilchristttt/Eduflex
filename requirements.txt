@@ -3,7 +3,7 @@ fastapi==0.115.11
 uvicorn==0.34.0
 python-multipart==0.0.20
 python-dotenv==1.0.1
-requests==2.32.3
+requests==2.32.4
 
 # Data / NLP (léger)
 pydantic==2.10.6
