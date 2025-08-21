@@ -1,7 +1,7 @@
 // src/TrainingPlanFull.jsx
 import React, { useState } from "react";
 import './App.css';
-//import html2pdf from "html2pdf.js";
+import html2pdf from "html2pdf.js";
 
 // Composant Quiz intégré ici (tu peux aussi le mettre dans src/Quiz.jsx séparément)
 function Quiz({ questions = [], onFinish, onClose }) {
@@ -222,16 +222,16 @@ export default function TrainingPlanFull() {
 
 
 
-  //const exportChapterPDF = (chapterHtml, filename = "chapter.pdf") => {
-  //  const el = document.createElement("div");
-  //  el.innerHTML = chapterHtml;
- //   html2pdf().from(el).set({
- //     margin: 0.5,
- //     filename,
- //     html2canvas: { scale: 2 },
- //     jsPDF: { unit: "in", format: "a4", orientation: "portrait" }
- //   }).save();
- // };
+  const exportChapterPDF = (chapterHtml, filename = "chapter.pdf") => {
+    const el = document.createElement("div");
+    el.innerHTML = chapterHtml;
+    html2pdf().from(el).set({
+      margin: 0.5,
+      filename,
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "in", format: "a4", orientation: "portrait" }
+    }).save();
+  };
 
   // Gestion formulaire
   const handleSubmit = (e) => {
@@ -422,9 +422,9 @@ export default function TrainingPlanFull() {
             dangerouslySetInnerHTML={{ __html: selectedChapter.html }}
             style={{ border: "1px solid #ddd", padding: 15, borderRadius: 5 }}
           />
-          {/* <button onClick={() => exportChapterPDF(selectedChapter.html, `${selectedChapter.title}.pdf`)} style={{ marginTop: 10 }}>
+           <button onClick={() => exportChapterPDF(selectedChapter.html, `${selectedChapter.title}.pdf`)} style={{ marginTop: 10 }}>
             Exporter ce chapitre en PDF
-          </button> */}
+          </button> 
         </div>
       )}
 
