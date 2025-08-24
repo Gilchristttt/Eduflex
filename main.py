@@ -15,7 +15,7 @@ load_dotenv()
 # ---------- Configuration LLM ----------
 llm = ChatGroq(
     groq_api_key=os.getenv("GROQ_API_KEY"),
-    model_name="llama-3.3-70b-versatile"
+    model_name="qwen/qwen3-32b"
 )
 
 # ---------- FastAPI ----------
